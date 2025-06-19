@@ -34,7 +34,7 @@ const Card = () => {
           <div className="back">
             <div className="back-content">
               
-              <img src="/image.jpeg" alt="Foto de fondo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/image.png" alt="Foto de fondo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
           <div className="front">
