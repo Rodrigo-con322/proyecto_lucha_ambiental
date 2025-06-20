@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 function Admi() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Admi() {
                 </button>
               </Marco>
               <div className="card">
-                <p>EMPLEADO</p>
+                <p>STAFF</p>
                 <p onClick={irAArea}><span>ÁREA</span></p>
                 <p onClick={irANivel}><span>NIVEL</span></p>
               </div>
@@ -60,35 +61,19 @@ function Admi() {
                 </Buscar>
               </BuscarWrapper>
 
-              {mostrarCirculos && (
-                <ContenedorGeneral>
-                  <Fila>
-                    <CirculoConTexto>
-                      <Circulo color="#4CAF50" />
-                      <TextoCirculo>CURSO 1</TextoCirculo>
-                    </CirculoConTexto>
-                    <CirculoConTexto>
-                      <Circulo color="#f44336" />
-                      <TextoCirculo>CURSO 2</TextoCirculo>
-                    </CirculoConTexto>
-                    <CirculoConTexto>
-                      <Circulo color="#4CAF50" />
-                      <TextoCirculo>CURSO 3</TextoCirculo>
-                    </CirculoConTexto>
-                  </Fila>
-
-                  <Fila style={{ marginTop: '25px' }}>
-                    <CirculoConTexto>
-                      <Circulo color="#cccccc" />
-                      <TextoCirculo>CURSO 4</TextoCirculo>
-                    </CirculoConTexto>
-                    <CirculoConTexto>
-                      <Circulo color="#cccccc" />
-                      <TextoCirculo>CURSO 5</TextoCirculo>
-                    </CirculoConTexto>
-                  </Fila>
-                </ContenedorGeneral>
-              )}
+                {mostrarCirculos && (
+                  <ContenedorGeneral>
+                    <Fila>
+                      <CirculoEstadistica nombre="CURSO 1" buenas={10} malas={5} blancas={5} />
+                      <CirculoEstadistica nombre="CURSO 2" buenas={4} malas={12} blancas={4} />
+                      <CirculoEstadistica nombre="CURSO 3" buenas={15} malas={3} blancas={2} />
+                    </Fila>
+                    <Fila style={{ marginTop: '25px' }}>
+                      <CirculoEstadistica nombre="CURSO 4" buenas={6} malas={6} blancas={8} />
+                      <CirculoEstadistica nombre="CURSO 5" buenas={2} malas={5} blancas={13} />
+                    </Fila>
+                  </ContenedorGeneral>
+                )}
             </Subpanel>
           </SeccionDerecha>
         </Contenido>
@@ -108,21 +93,41 @@ const Fila = styled.div`
   gap: 12px;
 `;
 
-const Circulo = styled.div`
-  width: 136px;
-  height: 136px;
-  border-radius: 50%;
-  background-color: ${props => props.color};
-  border: 2px solid #0a1f44;
-`;
+const Colores = {
+  correcto: "#4CAF50", // verde
+  incorrecto: "#f44336", // rojo
+  blanco: "#cccccc" // gris
+};
 
-const CirculoConTexto = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px; /* espacio entre el círculo y el texto */
-  margin: 0 10px; /* espacio lateral entre los círculos */
-`;
+const CirculoEstadistica = ({ nombre, buenas, malas, blancas }) => {
+  const total = buenas + malas + blancas; //Elimina esa línea o úsala si piensas mostrar validaciones como if (total === 0).
+  const data = [
+    { name: 'Correctas', value: buenas, color: Colores.correcto },
+    { name: 'Incorrectas', value: malas, color: Colores.incorrecto },
+    { name: 'En blanco', value: blancas, color: Colores.blanco }
+  ];
+
+  return (
+    <div style={{ textAlign: 'center', margin: '0 10px' }}>
+      <PieChart width={140} height={140}>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="50%"
+          innerRadius={30}
+          outerRadius={65}
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell key={index} fill={entry.color} />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+      <TextoCirculo>{nombre}</TextoCirculo>
+    </div>
+  );
+};
 
 const TextoCirculo = styled.span`
   font-size: 12px;
@@ -219,7 +224,6 @@ const Subpanel = styled.div`
   justify-content: flex-start; /* alinear arriba */
   gap: 1.5rem;              /* espacio entre buscador y círculos */
 `;
-
 
 const Contenido = styled.div`
   display: flex;

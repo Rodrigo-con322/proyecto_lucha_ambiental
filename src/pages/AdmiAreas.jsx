@@ -22,7 +22,7 @@ function Admi() {
                     </button>
                   </Marco>
               <div className="card">
-                <p onClick={irAEmpleado}><span>EMPLEADO</span></p>
+                <p onClick={irAEmpleado}><span>STAFF</span></p>
                 <p>ÁREA</p>
                 <p onClick={irANivel}><span>NIVEL</span></p>
               </div>
