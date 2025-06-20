@@ -6,7 +6,7 @@ function FinExamen() {
   const navigate = useNavigate();
 
   const manejarInicio = () => {
-    navigate('/Inicio/Login/Usuario/Examen/Fin/Retroalimentacion');
+    navigate('/Login/Usuario/Examen/Fin/Retroalimentacion');
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Login from './pages/Login';
+import Admi from './pages/Admi';
 import AdmiEmpleados from './pages/AdmiEmpleados';
 import AdmiAreas from './pages/AdmiAreas';
 import AdmiNiveles from './pages/AdmiNiveles';
@@ -62,63 +63,64 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Inicio />} />
-      <Route path="/Inicio/Login" element={<Login />} />
-      <Route path="/Inicio/Login/Admi/Empleados" element={<AdmiEmpleados />} />
-      <Route path="/Inicio/Login/Admi/Areas" element={<AdmiAreas />} />
-      <Route path="/Inicio/Login/Admi/Niveles" element={<AdmiNiveles />} />
-      <Route path="/Inicio/Login/Usuario/Indicaciones" element={<Indicaciones />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta1" element={<Pregunta1 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta2" element={<Pregunta2 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta3" element={<Pregunta3 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta4" element={<Pregunta4 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta5" element={<Pregunta5 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta6" element={<Pregunta6 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta7" element={<Pregunta7 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta8" element={<Pregunta8 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta9" element={<Pregunta9 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta10" element={<Pregunta10 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta11" element={<Pregunta11 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta12" element={<Pregunta12 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta13" element={<Pregunta13 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta14" element={<Pregunta14 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta15" element={<Pregunta15 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta16" element={<Pregunta16 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta17" element={<Pregunta17 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta18" element={<Pregunta18 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta19" element={<Pregunta19 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta20" element={<Pregunta20 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta21" element={<Pregunta21 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta22" element={<Pregunta22 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta23" element={<Pregunta23 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta24" element={<Pregunta24 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta25" element={<Pregunta25 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta26" element={<Pregunta26 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta27" element={<Pregunta27 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta28" element={<Pregunta28 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta29" element={<Pregunta29 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta30" element={<Pregunta30 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta31" element={<Pregunta31 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta32" element={<Pregunta32 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta33" element={<Pregunta33 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta34" element={<Pregunta34 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta35" element={<Pregunta35 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta36" element={<Pregunta36 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta37" element={<Pregunta37 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta38" element={<Pregunta38 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta39" element={<Pregunta39 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta40" element={<Pregunta40 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta41" element={<Pregunta41 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta42" element={<Pregunta42 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta43" element={<Pregunta43 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta44" element={<Pregunta44 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta45" element={<Pregunta45 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta46" element={<Pregunta46 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta47" element={<Pregunta47 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta48" element={<Pregunta48 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta49" element={<Pregunta49 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Pregunta50" element={<Pregunta50 />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Fin" element={<FinExamen />} />
-      <Route path="/Inicio/Login/Usuario/Examen/Fin/Retroalimentacion" element={<Retroalimentacion />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Login/Admi" element={<Admi/>} />
+      <Route path="/Login/Admi/Empleados" element={<AdmiEmpleados />} />
+      <Route path="/Login/Admi/Areas" element={<AdmiAreas />} />
+      <Route path="/Login/Admi/Niveles" element={<AdmiNiveles />} />
+      <Route path="/Login/Usuario/Indicaciones" element={<Indicaciones />} />
+      <Route path="/Login/Usuario/Examen/Pregunta1" element={<Pregunta1 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta2" element={<Pregunta2 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta3" element={<Pregunta3 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta4" element={<Pregunta4 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta5" element={<Pregunta5 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta6" element={<Pregunta6 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta7" element={<Pregunta7 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta8" element={<Pregunta8 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta9" element={<Pregunta9 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta10" element={<Pregunta10 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta11" element={<Pregunta11 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta12" element={<Pregunta12 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta13" element={<Pregunta13 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta14" element={<Pregunta14 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta15" element={<Pregunta15 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta16" element={<Pregunta16 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta17" element={<Pregunta17 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta18" element={<Pregunta18 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta19" element={<Pregunta19 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta20" element={<Pregunta20 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta21" element={<Pregunta21 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta22" element={<Pregunta22 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta23" element={<Pregunta23 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta24" element={<Pregunta24 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta25" element={<Pregunta25 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta26" element={<Pregunta26 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta27" element={<Pregunta27 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta28" element={<Pregunta28 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta29" element={<Pregunta29 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta30" element={<Pregunta30 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta31" element={<Pregunta31 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta32" element={<Pregunta32 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta33" element={<Pregunta33 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta34" element={<Pregunta34 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta35" element={<Pregunta35 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta36" element={<Pregunta36 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta37" element={<Pregunta37 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta38" element={<Pregunta38 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta39" element={<Pregunta39 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta40" element={<Pregunta40 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta41" element={<Pregunta41 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta42" element={<Pregunta42 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta43" element={<Pregunta43 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta44" element={<Pregunta44 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta45" element={<Pregunta45 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta46" element={<Pregunta46 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta47" element={<Pregunta47 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta48" element={<Pregunta48 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta49" element={<Pregunta49 />} />
+      <Route path="/Login/Usuario/Examen/Pregunta50" element={<Pregunta50 />} />
+      <Route path="/Login/Usuario/Examen/Fin" element={<FinExamen />} />
+      <Route path="/Login/Usuario/Examen/Fin/Retroalimentacion" element={<Retroalimentacion />} />
     </Routes>
   );
 }
