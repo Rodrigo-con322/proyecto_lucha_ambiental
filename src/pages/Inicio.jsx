@@ -1,19 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Inicio() {
+  
   return (
     <div
       style={{
         backgroundColor: '#130b37',
         minHeight: '100vh',
         color: 'white',
-        padding: '2rem',
+        padding: '1rem',
       }}
     >
       <div style={{ marginLeft: '350px' }}>
         <Card />
-      </div>
+      </div>  
 
       <div style={{ marginLeft: '800px', marginTop: '-300px' }}>
         <CardUsu />
@@ -206,13 +208,19 @@ const StyledWrapper = styled.div`
 `;
 
 const CardSuper = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Login');
+  };
+
   return (
     <StyledWrapperSuper>
       <div className="subscribe">
         <p>SUPERVISOR</p>
         
         <br />
-        <div className="submit-btn">INGRESAR</div>
+        <div className="submit-btn" onClick={handleClick} >INGRESAR</div>
       </div>
     </StyledWrapperSuper>
   );
@@ -292,13 +300,18 @@ const StyledWrapperSuper = styled.div`
   }`;
 
 const CardUsu = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Login');
+  };
   return (
     <StyledWrapperUsu>
       <div className="subscribe">
         <p>USUARIO</p>
         
         <br />
-        <div className="submit-btn">INGRESAR</div>
+        <div className="submit-btn" onClick={handleClick}>INGRESAR</div>
       </div>
     </StyledWrapperUsu>
   );
