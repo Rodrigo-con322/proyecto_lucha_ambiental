@@ -38,13 +38,13 @@ export default FinExamen;
 
 // 🎨 Estilos
 const Fondo = styled.div`
-  background-color: #130b37;
   min-height: 100vh;
+  color: white;
+  padding: 2rem;
+  background: linear-gradient(150deg, #130b37, rgb(15, 4, 47), rgb(46, 3, 74));
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  padding: 2rem;
   box-sizing: border-box;
 `;
 
