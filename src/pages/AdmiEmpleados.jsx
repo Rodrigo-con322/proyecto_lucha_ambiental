@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 function Admi() {
   const navigate = useNavigate();
 
+  const irAEstructura = () => navigate('/Login/Admi/Estructura');
   const irAArea = () => navigate('/Login/Admi/Areas');
   const irANivel = () => navigate('/Login/Admi/Niveles');
 
@@ -18,8 +19,8 @@ function Admi() {
             <Menu>
               <img src="/admi.png" alt="admi" className="Admi" />
               <Marco>
-                <button className="slice">
-                  <span className="text">ADMINISTRADOR</span>
+                <button className="slice" onClick={irAEstructura}>
+                  <span className="text">EXAMEN</span>
                 </button>
               </Marco>
               <div className="card">

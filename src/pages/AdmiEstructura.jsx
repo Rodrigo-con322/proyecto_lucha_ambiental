@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 function Admi() {
   const navigate = useNavigate();
 
-  const irAEstructura = () => navigate('/Login/Admi/Estructura');
   const irAEmpleado = () => navigate('/Login/Admi/Empleados');
   const irAArea = () => navigate('/Login/Admi/Areas');
+  const irANivel = () => navigate('/Login/Admi/Niveles');
 
   return (
     <Fondo>
@@ -17,14 +17,14 @@ function Admi() {
             <Menu>
               <img src="/admi.png" alt="admi" className="Admi" />
                   <Marco>
-                    <button className="slice" onClick={irAEstructura}>
+                    <button className="slice">
                       <span className="text">EXAMEN</span>
                     </button>
                   </Marco>
               <div className="card">
                 <p onClick={irAEmpleado}><span>EMPLEADO</span></p>
                 <p onClick={irAArea}><span>ÁREA</span></p>
-                <p>NIVEL</p>
+                <p onClick={irANivel}><span>NIVEL</span></p>
               </div>
             </Menu>
           </SeccionIzquierda>

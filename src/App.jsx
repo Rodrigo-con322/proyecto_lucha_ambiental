@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Login from './pages/Login';
 import Admi from './pages/Admi';
+import AdmiEstructura from './pages/AdmiEstructura';
 import AdmiEmpleados from './pages/AdmiEmpleados';
 import AdmiAreas from './pages/AdmiAreas';
 import AdmiNiveles from './pages/AdmiNiveles';
@@ -65,6 +66,7 @@ function App() {
       <Route path="/" element={<Inicio />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Login/Admi" element={<Admi/>} />
+      <Route path="/Login/Admi/Estructura" element={<AdmiEstructura />} />
       <Route path="/Login/Admi/Empleados" element={<AdmiEmpleados />} />
       <Route path="/Login/Admi/Areas" element={<AdmiAreas />} />
       <Route path="/Login/Admi/Niveles" element={<AdmiNiveles />} />
