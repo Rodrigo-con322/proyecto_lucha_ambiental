@@ -1,12 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function PreguntaPrimera() {
   return (
     <div style={styles.container}>
-      <div style={{ marginTop: '35rem' }}>
-        <ButtonAtras />
-      </div>
+      
       <CardPregunta />
       <div style={{ marginTop: '35rem' }}>
         <ButtonSiguiente />
@@ -24,7 +23,7 @@ const styles = {
     gap: '2rem',
     alignItems: 'flex-start',
     paddingTop: '3rem',
-    paddingLeft: '2rem',
+    paddingLeft: '17rem',
     paddingRight: '2rem',
     background: 'linear-gradient(150deg, #130b37, rgb(15, 4, 47), rgb(46, 3, 74))',
     color: 'white',
@@ -477,9 +476,14 @@ const StyledWrapperPregunta = styled.div`
 `;
 
 const ButtonSiguiente = () => {
+  const navigate = useNavigate();
+  
+    const siguiente = () => {
+      navigate('/Login/Usuario/Examen/PreguntaIntermedia');
+    };
   return (
     <StyledWrapperSiguiente>
-      <button type="button" className="btn">
+      <button type="button" className="btn" onClick={siguiente}>
         <strong>SIGUIENTE ➡️</strong>
         <div id="container-stars">
           <div id="stars" />
@@ -493,22 +497,6 @@ const ButtonSiguiente = () => {
   );
 }
 
-const ButtonAtras = () => {
-  return (
-    <StyledWrapperSiguiente>
-      <button type="button" className="btn">
-        <strong>⬅️ATRÁS</strong>
-        <div id="container-stars">
-          <div id="stars" />
-        </div>
-        <div id="glow">
-          <div className="circle" />
-          <div className="circle" />
-        </div>
-      </button>
-    </StyledWrapperSiguiente>
-  );
-}
 
 const StyledWrapperSiguiente = styled.div`
   .btn {

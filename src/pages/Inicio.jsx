@@ -7,7 +7,7 @@ function Inicio() {
   return (
     <div
       style={{
-        backgroundColor: '#130b37',
+        background: 'linear-gradient(150deg,rgb(17, 9, 48), rgb(28, 6, 93), rgb(95, 44, 130))',
         minHeight: '100vh',
         color: 'white',
         padding: '1rem',
