@@ -6,7 +6,7 @@ function Indicaciones() {
   const navigate = useNavigate();
 
   const manejarInicio = () => {
-    navigate('/Login/Usuario/Examen/Pregunta1');
+    navigate('/Login/Usuario/Examen/PreguntaPrimera');
   };
 
   return (

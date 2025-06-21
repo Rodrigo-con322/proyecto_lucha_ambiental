@@ -1,4 +1,4 @@
-function Pregunta1() {
+function PreguntaPrimera() {
   return (
     <div style={styles.container}>
       {/* Tu contenido aquí */}
@@ -15,4 +15,4 @@ const styles = {
   },
 };
 
-export default Pregunta1;
+export default PreguntaPrimera;
