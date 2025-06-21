@@ -5,12 +5,31 @@ import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 function Admi() {
   const navigate = useNavigate();
+  const [mostrarCirculos, setMostrarCirculos] = useState(false);
+  const [examenSeleccionado, setExamenSeleccionado] = useState('examen1');
+
+  // Datos simulados para Examen 1 y Examen 2
+  const datosExamen1 = [
+    { nombre: "CURSO 1", buenas: 10, malas: 5, blancas: 5 },
+    { nombre: "CURSO 2", buenas: 4, malas: 12, blancas: 4 },
+    { nombre: "CURSO 3", buenas: 15, malas: 3, blancas: 2 },
+    { nombre: "CURSO 4", buenas: 6, malas: 6, blancas: 8 },
+    { nombre: "CURSO 5", buenas: 2, malas: 5, blancas: 13 },
+  ];
+
+  const datosExamen2 = [
+    { nombre: "CURSO 1", buenas: 3, malas: 10, blancas: 7 },
+    { nombre: "CURSO 2", buenas: 8, malas: 6, blancas: 6 },
+    { nombre: "CURSO 3", buenas: 5, malas: 10, blancas: 5 },
+    { nombre: "CURSO 4", buenas: 12, malas: 2, blancas: 6 },
+    { nombre: "CURSO 5", buenas: 7, malas: 3, blancas: 10 },
+  ];
+
+  const datosMostrar = examenSeleccionado === 'examen1' ? datosExamen1 : datosExamen2;
 
   const irAEstructura = () => navigate('/Login/Admi/Estructura');
   const irAArea = () => navigate('/Login/Admi/Areas');
   const irANivel = () => navigate('/Login/Admi/Niveles');
-
-  const [mostrarCirculos, setMostrarCirculos] = useState(false);
 
   return (
     <Fondo>
@@ -39,41 +58,39 @@ function Admi() {
               <BuscarWrapper>
                 <Buscar>
                   <div className="input-group">
-                    <input
-                      type="text"
-                      className="input"
-                      id="Name"
-                      name="Name"
-                      placeholder="Ricardo Mendoza"
-                      autoComplete="off"
-                    />
-                    <button
-                      type="button"
-                      className="button--submit"
-                      onClick={() => {
-                        console.log("Buscando...");
-                        setMostrarCirculos(true); // activa los círculos
-                      }}
-                    >
+                    <input type="text" className="input" placeholder="Ricardo Mendoza" />
+                    <button className="button--submit" onClick={() => setMostrarCirculos(true)}>
                       BUSCAR
                     </button>
                   </div>
                 </Buscar>
               </BuscarWrapper>
 
-                {mostrarCirculos && (
+              {mostrarCirculos && (
+                <>
+                  <BotonDividido>
+                    <Opcion activa={examenSeleccionado === 'examen1'} onClick={() => setExamenSeleccionado('examen1')}>
+                      Examen 1
+                    </Opcion>
+                    <Opcion activa={examenSeleccionado === 'examen2'} onClick={() => setExamenSeleccionado('examen2')}>
+                      Examen 2
+                    </Opcion>
+                  </BotonDividido>
+
                   <ContenedorGeneral>
                     <Fila>
-                      <CirculoEstadistica nombre="CURSO 1" buenas={10} malas={5} blancas={5} />
-                      <CirculoEstadistica nombre="CURSO 2" buenas={4} malas={12} blancas={4} />
-                      <CirculoEstadistica nombre="CURSO 3" buenas={15} malas={3} blancas={2} />
+                      {datosMostrar.slice(0, 3).map((item, i) => (
+                        <CirculoEstadistica key={i} {...item} />
+                      ))}
                     </Fila>
                     <Fila style={{ marginTop: '25px' }}>
-                      <CirculoEstadistica nombre="CURSO 4" buenas={6} malas={6} blancas={8} />
-                      <CirculoEstadistica nombre="CURSO 5" buenas={2} malas={5} blancas={13} />
+                      {datosMostrar.slice(3, 5).map((item, i) => (
+                        <CirculoEstadistica key={i} {...item} />
+                      ))}
                     </Fila>
                   </ContenedorGeneral>
-                )}
+                </>
+              )}
             </Subpanel>
           </SeccionDerecha>
         </Contenido>
@@ -81,6 +98,30 @@ function Admi() {
     </Fondo>
   );
 }
+
+const BotonDividido = styled.div`
+  display: flex;
+  margin-bottom: -0.5rem;
+  border: 2px solid #0a1f44;
+  border-radius: 6px;
+  overflow: hidden;
+`;
+
+const Opcion = styled.button`
+  background-color: ${({ activa }) => (activa ? '#0a1f44' : '#fff')};
+  color: ${({ activa }) => (activa ? '#fff' : '#0a1f44')};
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #06142e;
+    color: white;
+  }
+`;
 
 const ContenedorGeneral = styled.div`
   display: flex;
@@ -100,7 +141,6 @@ const Colores = {
 };
 
 const CirculoEstadistica = ({ nombre, buenas, malas, blancas }) => {
-  const total = buenas + malas + blancas; //Elimina esa línea o úsala si piensas mostrar validaciones como if (total === 0).
   const data = [
     { name: 'Correctas', value: buenas, color: Colores.correcto },
     { name: 'Incorrectas', value: malas, color: Colores.incorrecto },
@@ -137,7 +177,7 @@ const TextoCirculo = styled.span`
 `;
 
 const BuscarWrapper = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: -0.5rem;
   width: 100%;
   display: flex;
   justify-content: center;

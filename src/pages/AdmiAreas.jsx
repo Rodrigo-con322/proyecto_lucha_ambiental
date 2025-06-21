@@ -1,6 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function Admi() {
   const navigate = useNavigate();
@@ -8,6 +9,8 @@ function Admi() {
   const irAEstructura = () => navigate('/Login/Admi/Estructura');
   const irAEmpleado = () => navigate('/Login/Admi/Empleados');
   const irANivel = () => navigate('/Login/Admi/Niveles');
+
+  const [mostrarGraficoDeBarras, setMostrarGraficoDeBarras] = useState(false);
 
   return (
     <Fondo>
@@ -33,7 +36,35 @@ function Admi() {
 
           <SeccionDerecha>
             <Subpanel>
-
+              <BuscarWrapper>
+                <Buscar>
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      className="input"
+                      id="Name"
+                      name="Name"
+                      placeholder="Ingrese el área..."
+                      autoComplete="off"
+                    />
+                    <button
+                      type="button"
+                      className="button--submit"
+                      onClick={() => {
+                        console.log("Buscando...");
+                        setMostrarGraficoDeBarras(true); // activa la grafica de barras
+                      }}
+                    >
+                      BUSCAR
+                    </button>
+                  </div>
+                </Buscar>
+              </BuscarWrapper>
+{mostrarGraficoDeBarras && (
+  <div style={{ width: '90%', display: 'flex', justifyContent: 'center' }}>
+    <GraficoBarrasCursos />
+  </div>
+)}
             </Subpanel>
           </SeccionDerecha>
         </Contenido>
@@ -41,6 +72,79 @@ function Admi() {
     </Fondo>
   );
 }
+
+const GraficoBarrasCursos = () => {
+  const datos = [
+    { curso: 'CURSO 1', buenas: 25, malas: 5 },
+    { curso: 'CURSO 2', buenas: 18, malas: 12 },
+    { curso: 'CURSO 3', buenas: 22, malas: 8 },
+    { curso: 'CURSO 4', buenas: 27, malas: 3 },
+    { curso: 'CURSO 5', buenas: 20, malas: 10 },
+  ];
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart data={datos} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        <XAxis dataKey="curso" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="buenas" stackId="a" fill="#28a745" name="Buenas" />
+        <Bar dataKey="malas" stackId="a" fill="#dc3545" name="Malas" />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
+
+const BuscarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 0; /* quitar margen para alinear mejor */
+`;
+
+const Buscar = styled.div`
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input {
+    min-height: 50px;
+    width: 375px; /* <-- Aumentado el ancho */
+    padding: 0 1rem;
+    color: #0a1f44;
+    font-size: 15px;
+    border: 1px solid #0a1f44;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+
+  .button--submit {
+    min-height: 50px;
+    width: 100px;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #0a1f44;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .button--submit:hover {
+    background-color: #06142e;
+  }
+
+  .input:focus,
+  .input:focus-visible {
+    border-color: #0a1f44;
+    outline: none;
+  }
+`;
 
 const Fondo = styled.div`
   min-height: 100vh;
@@ -75,8 +179,10 @@ const Subpanel = styled.div`
   min-height: 450px;
   margin-left: 12px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* para que el input esté arriba */
+  gap: 30px; /* espacio entre input y gráfico */
 `;
 
 const Contenido = styled.div`

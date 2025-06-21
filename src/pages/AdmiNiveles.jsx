@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function Admi() {
   const navigate = useNavigate();
@@ -8,6 +8,49 @@ function Admi() {
   const irAEstructura = () => navigate('/Login/Admi/Estructura');
   const irAEmpleado = () => navigate('/Login/Admi/Empleados');
   const irAArea = () => navigate('/Login/Admi/Areas');
+
+  const [datosTabla, setDatosTabla] = useState([]);
+  // Simulados (luego estos se reemplazan por datos del backend)
+  const datosBasica = [
+    { id: 1, nombre: "Juan Pérez", puesto: "Supervisor", calificacion: "Alta" },
+    { id: 2, nombre: "María López", puesto: "Asistente", calificacion: "Media" },
+    { id: 3, nombre: "Luis Gómez", puesto: "Técnico", calificacion: "Baja" },
+    { id: 4, nombre: "Ana Torres", puesto: "Coordinadora", calificacion: "Alta" },
+    { id: 5, nombre: "Carlos Ríos", puesto: "Analista", calificacion: "Pendiente" },
+  ];
+
+  const datosIntermedia = [
+    { id: 6, nombre: "Sofía Herrera", puesto: "Diseñadora", calificacion: "Media" },
+    { id: 7, nombre: "José Díaz", puesto: "Programador", calificacion: "Media" },
+    { id: 8, nombre: "Lucía Romero", puesto: "Secretaria", calificacion: "Media" },
+  ];
+
+  const datosAvanzada = [
+    { id: 9, nombre: "Pedro Ruiz", puesto: "Ingeniero", calificacion: "Alta" },
+    { id: 10, nombre: "Elena Vargas", puesto: "Jefa de Área", calificacion: "Alta" },
+  ];
+
+  const datosPendiente = [
+    { id: 11, nombre: "Daniel Bravo", puesto: "Asistente", calificacion: "Pendiente" },
+    { id: 12, nombre: "Fernanda Soto", puesto: "Técnico", calificacion: "Pendiente" },
+    { id: 14, nombre: "Miguel Ángel", puesto: "Gerente", calificacion: "Pendiente" },
+    { id: 15, nombre: "Laura Martínez", puesto: "Analista", calificacion: "Pendiente" },
+    { id: 16, nombre: "Andrés Castillo", puesto: "Supervisor", calificacion: "Pendiente" },
+    { id: 17, nombre: "Claudia Fernández", puesto: "Coordinadora", calificacion: "Pendiente" },
+    { id: 18, nombre: "Roberto Salazar", puesto: "Programador", calificacion: "Pendiente" },
+    { id: 19, nombre: "Patricia Jiménez", puesto: "Diseñadora", calificacion: "Pendiente" },
+    { id: 20, nombre: "Javier Morales", puesto: "Ingeniero", calificacion: "Pendiente" },
+  ];
+
+  const datosExonerada = [
+    { id: 13, nombre: "Oscar Palma", puesto: "Administrador", calificacion: "Exonerada" },
+  ];
+
+  const cargarDatosBasica = () => setDatosTabla(datosBasica);
+  const cargarDatosIntermedia = () => setDatosTabla(datosIntermedia);
+  const cargarDatosAvanzada = () => setDatosTabla(datosAvanzada);
+  const cargarDatosPendiente = () => setDatosTabla(datosPendiente);
+  const cargarDatosExonerada = () => setDatosTabla(datosExonerada);
 
   return (
     <Fondo>
@@ -33,7 +76,19 @@ function Admi() {
 
           <SeccionDerecha>
             <Subpanel>
-
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '10px' }}>
+                <TituloExamen>NIVELES DE CAPACITACIÓN</TituloExamen>
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
+                  <TipoNivel><button onClick={cargarDatosBasica}>BÁSICA</button></TipoNivel>
+                  <TipoNivel><button onClick={cargarDatosIntermedia}>INTERMEDIA</button></TipoNivel>
+                  <TipoNivel><button onClick={cargarDatosAvanzada}>AVANZADA</button></TipoNivel>
+                  <TipoNivel><button onClick={cargarDatosPendiente}>PENDIENTE</button></TipoNivel>
+                  <TipoNivel><button onClick={cargarDatosExonerada}>EXONERADA</button></TipoNivel>
+                </div>
+                  <div style={{ marginTop: '20px', width: '100%' }}>
+                    <TablaEditable datos={datosTabla} />
+                  </div>
+              </div>
             </Subpanel>
           </SeccionDerecha>
         </Contenido>
@@ -41,6 +96,130 @@ function Admi() {
     </Fondo>
   );
 }
+
+const TablaEditable = ({ datos }) => {
+  return (
+    <ContenedorTabla>
+      <Tabla>
+        <thead>
+          <tr>
+            <Th>ID</Th>
+            <Th>NOMBRE</Th>
+            <Th>PUESTO</Th>
+            <Th>CALIFICACIÓN</Th>
+          </tr>
+        </thead>
+        <tbody>
+          {datos.length === 0 ? (
+            // Mostrar 5 filas vacías
+            [...Array(5)].map((_, index) => (
+              <tr key={index}>
+                <Td>-</Td>
+                <Td></Td>
+                <Td></Td>
+                <Td></Td>
+              </tr>
+            ))
+          ) : (
+            datos.map((fila) => (
+              <tr key={fila.id}>
+                <Td>{fila.id}</Td>
+                <Td>{fila.nombre}</Td>
+                <Td>{fila.puesto}</Td>
+                <Td>{fila.calificacion}</Td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Tabla>
+    </ContenedorTabla>
+  );
+};
+
+const ContenedorTabla = styled.div`
+  max-height: 300px;  /* Ajusta el alto máximo según lo que quieras */
+  overflow-y: auto;
+  border: 2px solid #0a1f44;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+`;
+
+const Tabla = styled.table`
+  width: 100%;
+  border-collapse: separate;   /* ← separa las celdas */
+  border-spacing: 0 6px;       /* ← espacio vertical entre filas */
+  text-align: center;
+`;
+
+const Th = styled.th`
+  padding: 10px;
+  border: 1px solid white;     /* ← líneas blancas entre columnas */
+  background-color: #0a1f44;   /* azul oscuro */
+  color: white;
+`;
+
+const Td = styled.td`
+  padding: 8px;
+  color: #0a1f44;  /* ← Cambia este color según tu diseño */
+  border: 1px solid #ccc; /* Para que también tenga separación visual */
+`;
+
+const TituloExamen = styled.h2`
+  color: #0a1f44;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+`;
+
+const TipoNivel = styled.div`
+  button {
+    font-size: 12px;
+    letter-spacing: 0,5px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #0a1f44;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #0a1f44;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+
+  button:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #0a1f44;
+    z-index: -1;
+  }
+
+  button:hover, button:focus {
+    color: white;
+  }
+
+  button:hover:before, button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+
+  button:active {
+    transform: scale(0.9);
+  }`;
 
 const Fondo = styled.div`
   min-height: 100vh;

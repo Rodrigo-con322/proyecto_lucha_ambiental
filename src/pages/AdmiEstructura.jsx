@@ -9,6 +9,15 @@ function Admi() {
   const irAArea = () => navigate('/Login/Admi/Areas');
   const irANivel = () => navigate('/Login/Admi/Niveles');
 
+  const [totalPreguntas, setTotalPreguntas] = React.useState(20);
+  const [faciles, setFaciles] = React.useState(0);
+  const [intermedias, setIntermedias] = React.useState(0);
+  const [dificiles, setDificiles] = React.useState(0);
+
+  // Calcular máximo por tipo según total y número de cursos
+  const maxPorTipo = Math.floor(totalPreguntas / 5);
+  const opcionesPorTipo = Array.from({ length: maxPorTipo + 1 }, (_, i) => i);
+
   return (
     <Fondo>
       <Panel>
@@ -16,11 +25,11 @@ function Admi() {
           <SeccionIzquierda>
             <Menu>
               <img src="/admi.png" alt="admi" className="Admi" />
-                  <Marco>
-                    <button className="slice">
-                      <span className="text">EXAMEN</span>
-                    </button>
-                  </Marco>
+              <Marco>
+                <button className="slice">
+                  <span className="text">EXAMEN</span>
+                </button>
+              </Marco>
               <div className="card">
                 <p onClick={irAEmpleado}><span>STAFF</span></p>
                 <p onClick={irAArea}><span>ÁREA</span></p>
@@ -33,7 +42,70 @@ function Admi() {
 
           <SeccionDerecha>
             <Subpanel>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                <TituloExamen>ESTRUCTURA DEL EXAMEN</TituloExamen>
 
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <ContenedorSelector>
+                    <TextoFijo>NÚMERO DE PREGUNTAS  </TextoFijo>
+                    <Desplegable
+                      value={totalPreguntas}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value);
+                        setTotalPreguntas(val);
+                        setFaciles(0);
+                        setIntermedias(0);
+                        setDificiles(0);
+                      }}
+                    >
+                      {[20, 25, 30, 35, 40, 45, 50].map((num) => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </Desplegable>
+                  </ContenedorSelector>
+
+                  <ContenedorSelector>
+                    <TextoFijo>PREGUNTAS FÁCILES           </TextoFijo>
+                    <Desplegable value={faciles} onChange={(e) => setFaciles(parseInt(e.target.value))}>
+                      {opcionesPorTipo.map((num) => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </Desplegable>
+                  </ContenedorSelector>
+
+                  <ContenedorSelector>
+                    <TextoFijo>PREGUNTAS INTERMEDIAS</TextoFijo>
+                    <Desplegable value={intermedias} onChange={(e) => setIntermedias(parseInt(e.target.value))}>
+                      {opcionesPorTipo.map((num) => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </Desplegable>
+                  </ContenedorSelector>
+
+                  <ContenedorSelector>
+                    <TextoFijo>PREGUNTAS DIFÍCILES         </TextoFijo>
+                    <Desplegable value={dificiles} onChange={(e) => setDificiles(parseInt(e.target.value))}>
+                      {opcionesPorTipo.map((num) => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </Desplegable>
+                  </ContenedorSelector>
+                </div>
+
+                <div style={{ marginTop: '2rem' }}>
+                  <BotonConfirmar
+                    onClick={() => {
+                      console.log("Confirmado:");
+                      console.log("Total:", totalPreguntas);
+                      console.log("Fáciles:", faciles);
+                      console.log("Intermedias:", intermedias);
+                      console.log("Difíciles:", dificiles);
+                    }}
+                  >
+                    CONFIRMAR
+                  </BotonConfirmar>
+                </div>
+              </div>
             </Subpanel>
           </SeccionDerecha>
         </Contenido>
@@ -41,6 +113,62 @@ function Admi() {
     </Fondo>
   );
 }
+
+const BotonConfirmar = styled.button`
+  padding: 10px 30px;
+  background-color: #0a1f44;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+
+  &:hover {
+    background-color: #09213f;
+  }
+
+  &:active {
+    transform: scale(0.97);
+    background-color: #06172d;
+  }
+`;
+
+const TituloExamen = styled.h2`
+  color: #0a1f44;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+`;
+
+const ContenedorSelector = styled.div`
+  display: flex;
+  align-items: center;
+  border: 2px solid #0a1f44;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  color: #0a1f44;
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+const TextoFijo = styled.div`
+  margin-right: 15px;
+  white-space: pre;
+`;
+
+const Desplegable = styled.select`
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #0a1f44;
+  color: #0a1f44;
+  background-color: white;
+`;
 
 const Fondo = styled.div`
   min-height: 100vh;
